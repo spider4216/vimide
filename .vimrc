@@ -1,3 +1,4 @@
+" Line's number
 set number
 
 set tabstop=4
