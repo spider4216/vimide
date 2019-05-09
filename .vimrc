@@ -1,5 +1,7 @@
 " Line's number
 set number
+" Lines will not wrap if longer than width window
+set nowrap
 
 set tabstop=4
 set shiftwidth=4
