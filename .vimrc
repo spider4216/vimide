@@ -24,4 +24,4 @@ augroup END
 
 " Map
 " Delete line in insert mode
-inoremap <c-d> <esc>ddi
+inoremap <leader><c-d> <esc>ddi
