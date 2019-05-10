@@ -18,3 +18,7 @@ augroup ProjectDrawer
   autocmd!
   autocmd VimEnter * :Vexplore
 augroup END
+
+" Map
+" Delete line map
+map <c-d> dd
