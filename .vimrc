@@ -1,3 +1,6 @@
+" Map leader
+let mapleader = "-"
+
 " Line's number
 set number
 " Lines will not wrap if longer than width window
