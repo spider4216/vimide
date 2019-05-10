@@ -20,5 +20,5 @@ augroup ProjectDrawer
 augroup END
 
 " Map
-" Delete line map
-map <c-d> dd
+" Delete line in insert mode
+imap <c-d> <esc>ddi
