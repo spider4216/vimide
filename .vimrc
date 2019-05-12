@@ -25,3 +25,6 @@ augroup END
 " Map
 " Delete line in insert mode
 inoremap <leader><c-d> <esc>ddi
+" Comment a line for PHP file
+autocmd FileType php let maplocalleader="-"
+autocmd FileType php inoremap <buffer> <localleader>// <c-o>0//
