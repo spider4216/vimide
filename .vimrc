@@ -28,3 +28,8 @@ inoremap <leader><c-d> <esc>ddi
 " Comment a line for PHP file
 autocmd FileType php let maplocalleader="-"
 autocmd FileType php inoremap <buffer> <localleader>// <c-o>0//
+" PHP abbreviations
+autocmd FileType php iabbrev <buffer> iff if () {}<left><left><left><left>
+autocmd FileType php iabbrev <buffer> pubb public
+autocmd FileType php iabbrev <buffer> privv private
+autocmd FileType php iabbrev <buffer> prott protected
