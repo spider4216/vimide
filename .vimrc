@@ -28,10 +28,15 @@ inoremap <leader><c-d> <esc>ddi
 " Comment a line for PHP file
 autocmd FileType php let maplocalleader="-"
 autocmd FileType php inoremap <buffer> <localleader>// <c-o>0//
+autocmd FileType php inoremap <localleader><tab> <c-n>
+autocmd FileType php,*.yaml,*.yml inoremap <localleader><c-v> <esc>pi
+
+autocmd CursorHoldI php :write
 
 augroup PHPControlStructureGroup
   autocmd!
   autocmd FileType php iabbrev <buffer> iff if () {}<left><left><left><left>
+  autocmd FileType php iabbrev <buffer> foreachh foreach () {}<left><left><left><left>
 augroup END
 
 augroup PHPClassAbbrevGroup
@@ -39,4 +44,7 @@ augroup PHPClassAbbrevGroup
   autocmd FileType php iabbrev <buffer> pubb public
   autocmd FileType php iabbrev <buffer> privv private
   autocmd FileType php iabbrev <buffer> prott protected
+  autocmd FileType php iabbrev <buffer> constructt public function __construct() {}<left>
+  autocmd FileType php iabbrev <buffer> sett public function set(): self {}<left><left><left><left><left><left><left><left><left><left><left>
+  autocmd FileType php iabbrev <buffer> gett public function get() {}<left><left><left><left><left>
 augroup END
