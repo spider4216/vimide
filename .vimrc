@@ -48,3 +48,10 @@ augroup PHPClassAbbrevGroup
   autocmd FileType php iabbrev <buffer> sett public function set(): self {}<left><left><left><left><left><left><left><left><left><left><left>
   autocmd FileType php iabbrev <buffer> gett public function get() {}<left><left><left><left><left>
 augroup END
+
+function SearchByContent(text)
+    let cmd = "!grep -rnw . -e " . a:text
+    execute cmd
+endfunction
+
+command -nargs=1 SearchText call SearchByContent(<f-args>)
