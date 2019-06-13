@@ -65,3 +65,18 @@ command -nargs=1 SearchFile call SearchByFilename(<f-args>)
 
 autocmd FileType php set colorcolumn=80
 autocmd FileType php highlight ColorColumn ctermbg=lightgrey guibg=lightgrey
+
+function CtagsGlobalSynch()
+    let cmd = "!ctags -R"
+    execute cmd
+endfunction
+
+function CtagsCurrentFile()
+    let path = expand("%:p")
+    let cmd = "!ctags " . path
+    execute cmd
+endfunction
+
+command TagSynch call CtagsCurrentFile()
+command GtagSynch call CtagsGlobalSynch()
+
