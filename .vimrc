@@ -54,4 +54,11 @@ function SearchByContent(text)
     execute cmd
 endfunction
 
+function SearchByFilename(filename)
+    let cmd = "!find . -name " . a:filename
+    execute cmd
+endfunction
+
+
 command -nargs=1 SearchText call SearchByContent(<f-args>)
+command -nargs=1 SearchFile call SearchByFilename(<f-args>)
