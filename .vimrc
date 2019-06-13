@@ -30,6 +30,7 @@ autocmd FileType php let maplocalleader="-"
 autocmd FileType php inoremap <buffer> <localleader>// <c-o>0//
 autocmd FileType php inoremap <localleader><tab> <c-n>
 autocmd FileType php,*.yaml,*.yml inoremap <localleader><c-v> <esc>pi
+autocmd FileType php,*.yaml,*.yml inoremap <localleader><c-z> <esc>ui
 
 autocmd CursorHoldI php :write
 
