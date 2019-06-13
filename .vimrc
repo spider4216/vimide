@@ -80,3 +80,4 @@ endfunction
 command TagSynch call CtagsCurrentFile()
 command GtagSynch call CtagsGlobalSynch()
 
+autocmd BufWritePost php TagSynch
