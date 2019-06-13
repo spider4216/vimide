@@ -62,3 +62,6 @@ endfunction
 
 command -nargs=1 SearchText call SearchByContent(<f-args>)
 command -nargs=1 SearchFile call SearchByFilename(<f-args>)
+
+autocmd FileType php set colorcolumn=80
+autocmd FileType php highlight ColorColumn ctermbg=lightgrey guibg=lightgrey
