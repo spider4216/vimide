@@ -14,8 +14,9 @@ set smartindent
 
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
-let g:netrw_browse_split = 4
+" let g:netrw_browse_split = 4
 let g:netrw_winsize = 25
+let g:netrw_chgwin = 2
 
 augroup ProjectDrawer
   autocmd!
@@ -31,6 +32,16 @@ autocmd FileType php inoremap <buffer> <localleader>// <c-o>0//
 autocmd FileType php inoremap <localleader><tab> <c-n>
 autocmd FileType php,*.yaml,*.yml inoremap <localleader><c-v> <esc>pi
 autocmd FileType php,*.yaml,*.yml inoremap <localleader><c-z> <esc>ui
+autocmd FileType php setlocal makeprg=php\ -ln\ 
+
+
+augroup auto_make
+    autocmd!
+    autocmd BufReadPost,BufWritePost *.php silent make %:p
+    autocmd BufReadPost,BufWritePost *.php redraw!
+    autocmd BufReadPost,BufWritePost *.php cope
+    autocmd BufReadPost,BufWritePost *.php wincmd 1
+augroup END
 
 autocmd CursorHoldI php :write
 
