@@ -32,18 +32,17 @@ autocmd FileType php inoremap <buffer> <localleader>// <c-o>0//
 autocmd FileType php inoremap <localleader><tab> <c-n>
 autocmd FileType php,*.yaml,*.yml inoremap <localleader><c-v> <esc>pi
 autocmd FileType php,*.yaml,*.yml inoremap <localleader><c-z> <esc>ui
-autocmd FileType php setlocal makeprg=php\ -ln\ 
+autocmd FileType php setlocal makeprg=php\ -ln\ %
+autocmd FileType php setlocal errorformat=%m\ in\ %f\ on\ line\ %l
 
 
 augroup auto_make
     autocmd!
-    autocmd BufReadPost,BufWritePost *.php silent make %:p
+    autocmd BufReadPost,BufWritePost *.php silent! make
     autocmd BufReadPost,BufWritePost *.php redraw!
-    autocmd BufReadPost,BufWritePost *.php cope
-    autocmd BufReadPost,BufWritePost *.php wincmd 1
+    autocmd BufReadPost,BufWritePost *.php cope 5
+    autocmd BufReadPost,BufWritePost *.php wincmd k
 augroup END
-
-autocmd CursorHoldI php :write
 
 augroup PHPControlStructureGroup
   autocmd!
