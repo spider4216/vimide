@@ -23,6 +23,8 @@ augroup ProjectDrawer
   autocmd VimEnter * :Vexplore
 augroup END
 
+autocmd BufNewFile,BufRead *.twig set syntax=html
+
 " Map
 " Delete line in insert mode
 inoremap <leader><c-d> <esc>ddi
@@ -35,6 +37,7 @@ autocmd FileType php,*.yaml,*.yml inoremap <localleader><c-z> <esc>ui
 autocmd FileType php setlocal makeprg=php\ -ln\ %
 autocmd FileType php setlocal errorformat=%m\ in\ %f\ on\ line\ %l
 
+autocmd CursorHoldI *.php write
 
 augroup auto_make
     autocmd!
