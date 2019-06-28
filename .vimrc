@@ -36,16 +36,25 @@ autocmd FileType php,*.yaml,*.yml inoremap <localleader><c-v> <esc>pi
 autocmd FileType php,*.yaml,*.yml inoremap <localleader><c-z> <esc>ui
 autocmd FileType php setlocal makeprg=php\ -ln\ %
 autocmd FileType php setlocal errorformat=%m\ in\ %f\ on\ line\ %l
-
+autocmd FileType *twig,*html setlocal makeprg=tidy\ -eq\ %
 autocmd CursorHoldI *.php write
 
-augroup auto_make
+augroup auto_make_php
     autocmd!
     autocmd BufReadPost,BufWritePost *.php silent! make
     autocmd BufReadPost,BufWritePost *.php redraw!
     autocmd BufReadPost,BufWritePost *.php cope 5
     autocmd BufReadPost,BufWritePost *.php wincmd k
 augroup END
+
+augroup auto_make_html
+    autocmd!
+    autocmd BufReadPost,BufWritePost *.html,*.twig silent! make
+    autocmd BufReadPost,BufWritePost *.html,*.twig redraw!
+    autocmd BufReadPost,BufWritePost *.html,*.twig cope 5
+    autocmd BufReadPost,BufWritePost *.html,*.twig wincmd k
+augroup END
+
 
 augroup PHPControlStructureGroup
   autocmd!
@@ -73,9 +82,16 @@ function SearchByFilename(filename)
     execute cmd
 endfunction
 
+function SearchText(pattern, filename)
+    let cmd = "silent! grep " . a:pattern . " " . a:filename
+    echom cmd
+    execute cmd
+    execute "redraw!"
+endfunction
 
-command -nargs=1 SearchText call SearchByContent(<f-args>)
+" command -nargs=1 SearchText call SearchByContent(<f-args>)
 command -nargs=1 SearchFile call SearchByFilename(<f-args>)
+command -nargs=+ SearchText call SearchText(<f-args>)
 
 autocmd FileType php set colorcolumn=80
 autocmd FileType php highlight ColorColumn ctermbg=lightgrey guibg=lightgrey
