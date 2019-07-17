@@ -39,23 +39,6 @@ autocmd FileType php setlocal errorformat=%m\ in\ %f\ on\ line\ %l
 autocmd FileType *twig,*html setlocal makeprg=tidy\ -eq\ %
 autocmd CursorHoldI *.php write
 
-"augroup auto_make_php
-"    autocmd!
-"    autocmd BufReadPost,BufWritePost *.php silent! make
-"    autocmd BufReadPost,BufWritePost *.php redraw!
-"    autocmd BufReadPost,BufWritePost *.php cope 5
-"    autocmd BufReadPost,BufWritePost *.php wincmd k
-"augroup END
-
-"augroup auto_make_html
-"    autocmd!
-"    autocmd BufReadPost,BufWritePost *.html,*.twig silent! make
-"    autocmd BufReadPost,BufWritePost *.html,*.twig redraw!
-"    autocmd BufReadPost,BufWritePost *.html,*.twig cope 5
-"    autocmd BufReadPost,BufWritePost *.html,*.twig wincmd k
-"augroup END
-
-
 augroup PHPControlStructureGroup
   autocmd!
   autocmd FileType php iabbrev <buffer> iff if () {}<left><left><left><left>
@@ -86,6 +69,15 @@ function SearchText(pattern, filename)
     let cmd = "vimgrep " . a:pattern . " " . a:filename . " | copen 5"
     execute cmd
 endfunction
+
+function CreatePHPFile(path)
+    let filename = split(a:path, "/")[-1]
+    let classname = fnamemodify(filename, ":r")
+    let cmd = "call writefile(split('<?php\n\nclass " . classname . "\n{\n}', '\n'), " . a:path . ")"
+    execute cmd
+endfunction
+
+command -nargs=1 CreatePHP call CreatePHPFile(<f-args>)
 
 " command -nargs=1 SearchText call SearchByContent(<f-args>)
 command -nargs=1 SearchFile call SearchByFilename(<f-args>)
