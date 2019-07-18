@@ -108,3 +108,9 @@ command GtagSynch call CtagsGlobalSynch()
 autocmd BufWritePost php TagSynch
 
 let g:debuggerPort = 9001
+
+set statusline=%f         " Path to the file
+set statusline+=%=        " Switch to the right side
+set statusline+=%l        " Current line
+set statusline+=/         " Separator
+set statusline+=%L        " Total lines
