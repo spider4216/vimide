@@ -1,5 +1,10 @@
+syntax on
+
 " Map leader
 let mapleader = "-"
+
+" backspace
+set bs=2
 
 " Line's number
 set number
@@ -101,3 +106,5 @@ command TagSynch call CtagsCurrentFile()
 command GtagSynch call CtagsGlobalSynch()
 
 autocmd BufWritePost php TagSynch
+
+let g:debuggerPort = 9001

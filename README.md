@@ -12,3 +12,7 @@ Ctags is a programming tool that generates an index (or tag) file of names found
 `<Ctrl+]>` to jump to a symbol
 
 `<Ctrl+t>` to jump back
+
+#### Install
+
+`./configure --enable-pythoninterp=yes --with-python-config-dir=/usr/lib/python2.7/config-x86_64-linux-gnu`
