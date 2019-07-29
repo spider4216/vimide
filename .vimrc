@@ -75,14 +75,20 @@ function SearchText(pattern, filename)
     execute cmd
 endfunction
 
-function CreatePHPFile(path)
-    let filename = split(a:path, "/")[-1]
+function CreatePHPFile()
+    call inputsave()
+    let path = input('Type file name: ')
+    let pathString = string(path)
+    call inputrestore()
+
+    let filename = split(pathString, "/")[-1]
     let classname = fnamemodify(filename, ":r")
-    let cmd = "call writefile(split('<?php\n\nclass " . classname . "\n{\n}', '\n'), " . a:path . ")"
+    let cmd = "call writefile(split('<?php\n\nclass " . classname . "\n{\n}', '\n'), " . pathString . ")"
     execute cmd
+    execute "edit " . path
 endfunction
 
-command -nargs=1 CreatePHP call CreatePHPFile(<f-args>)
+command CreatePHP call CreatePHPFile()
 
 " command -nargs=1 SearchText call SearchByContent(<f-args>)
 command -nargs=1 SearchFile call SearchByFilename(<f-args>)
@@ -116,4 +122,5 @@ set statusline+=/         " Separator
 set statusline+=%L        " Total lines
 
 autocmd FileType * inoremap <localleader><c-a-down> <esc>YPi
+autocmd FileType * inoremap <localleader><c-n> <esc>:execute "CreatePHP"<cr>
 
