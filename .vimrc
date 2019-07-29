@@ -114,3 +114,6 @@ set statusline+=%=        " Switch to the right side
 set statusline+=%l        " Current line
 set statusline+=/         " Separator
 set statusline+=%L        " Total lines
+
+autocmd FileType * inoremap <localleader><c-a-down> <esc>YPi
+
