@@ -42,7 +42,6 @@ autocmd FileType php,*.yaml,*.yml inoremap <localleader><c-v> <esc>pi
 "autocmd FileType php setlocal makeprg=php\ -ln\ %
 autocmd FileType php setlocal errorformat=%m\ in\ %f\ on\ line\ %l
 autocmd FileType *twig,*html setlocal makeprg=tidy\ -eq\ %
-autocmd CursorHoldI *.php write
 
 augroup PHPControlStructureGroup
   autocmd!
@@ -65,13 +64,24 @@ function SearchByContent(text)
     execute cmd
 endfunction
 
-function SearchByFilename(filename)
-    let cmd = "cexpr system('find . -name " . a:filename . " -printf \"%p:1:1:%f\\n\"') | copen 5"
+function SearchByFilename()
+    call inputsave()
+    let filename = input('Search file: ')
+    let path = input('Where are you looking for: ')
+    call inputrestore()
+
+    let cmd = "cexpr system('find " . path . " -name " . filename . " -printf \"%p:1:1:%f\\n\"') | copen 10"
+    redraw
     execute cmd
 endfunction
 
-function SearchText(pattern, filename)
-    let cmd = "vimgrep " . a:pattern . " " . a:filename . " | copen 5"
+function SearchText()
+    call inputsave()
+    let text = input('What are you looking for: ')
+    let path = input('Where are you looking for: ')
+    call inputrestore()
+
+    let cmd = "vimgrep " . text . " " . path . "  | copen 10"
     execute cmd
 endfunction
 
@@ -91,8 +101,8 @@ endfunction
 command CreatePHP call CreatePHPFile()
 
 " command -nargs=1 SearchText call SearchByContent(<f-args>)
-command -nargs=1 SearchFile call SearchByFilename(<f-args>)
-command -nargs=+ SearchText call SearchText(<f-args>)
+command SearchFile call SearchByFilename()
+command SearchText call SearchText()
 
 autocmd FileType php set colorcolumn=80
 autocmd FileType php highlight ColorColumn ctermbg=lightgrey guibg=lightgrey
@@ -122,5 +132,4 @@ set statusline+=/         " Separator
 set statusline+=%L        " Total lines
 
 autocmd FileType * inoremap <localleader><c-a-down> <esc>YPi
-autocmd FileType php inoremap <localleader><c-n> <esc>:execute "CreatePHP"<cr>
 
