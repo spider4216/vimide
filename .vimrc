@@ -122,5 +122,5 @@ set statusline+=/         " Separator
 set statusline+=%L        " Total lines
 
 autocmd FileType * inoremap <localleader><c-a-down> <esc>YPi
-autocmd FileType * inoremap <localleader><c-n> <esc>:execute "CreatePHP"<cr>
+autocmd FileType php inoremap <localleader><c-n> <esc>:execute "CreatePHP"<cr>
 
