@@ -114,14 +114,15 @@ endfunction
 
 function CtagsCurrentFile()
     let path = expand("%:p")
-    let cmd = "!ctags " . path
+    let cmd = "silent !ctags " . path
     execute cmd
 endfunction
 
 command TagSynch call CtagsCurrentFile()
 command GtagSynch call CtagsGlobalSynch()
 
-autocmd BufWritePost php TagSynch
+autocmd BufWritePost *.php :execute CtagsCurrentFile()
+
 
 let g:debuggerPort = 9001
 
