@@ -121,10 +121,12 @@ endfunction
 command TagSynch call CtagsCurrentFile()
 command GtagSynch call CtagsGlobalSynch()
 
-autocmd BufWritePost *.php :execute CtagsCurrentFile()
+" autocmd BufWritePost *.php :execute CtagsCurrentFile()
 
 
 let g:debuggerPort = 9001
+let g:debuggerTimeout = 40
+let g:debuggerMaxDepth = 10
 
 set statusline=%f         " Path to the file
 set statusline+=%=        " Switch to the right side
