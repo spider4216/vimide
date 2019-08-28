@@ -1,46 +1,52 @@
+" {{{ system options
 syntax on
-
 " Map leader
 let mapleader = "-"
-
 " backspace
 set bs=2
-
 " Line's number
 set number
 " Lines will not wrap if longer than width window
 set nowrap
-
 set tabstop=4
 set shiftwidth=4
 set expandtab
-
 set smartindent
+" }}}
 
+" {{{ for vim files
+augroup filetype_vim
+    autocmd!
+    autocmd FileType vim setlocal foldmethod=marker
+augroup END
+
+" }}}
+
+" {{{ netrw options
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
-" let g:netrw_browse_split = 4
 let g:netrw_winsize = 25
 let g:netrw_chgwin = 2
-
 augroup ProjectDrawer
   autocmd!
   autocmd VimEnter * :Vexplore
 augroup END
+" }}}
 
+" {{{ for twig files
 autocmd BufNewFile,BufRead *.twig set syntax=html
+" }}}
 
 " Map
 " Delete line in insert mode
-inoremap <leader><c-d> <esc>ddi
+inoremap <leader>dd <esc>ddi
+
+
 " Comment a line for PHP file
 autocmd FileType php let maplocalleader="-"
-autocmd FileType php inoremap <buffer> <localleader>// <c-o>0//
-autocmd FileType php inoremap <localleader><tab> <c-n>
-autocmd FileType php,*.yaml,*.yml inoremap <localleader><c-v> <esc>pi
-"autocmd FileType php,*.yaml,*.yml inoremap <localleader><c-z> <esc>ui
-"autocmd FileType php setlocal makeprg=php\ -ln\ %
+autocmd FileType php,*.yaml,*.yml inoremap <localleader>p <esc>pi<right>
 autocmd FileType php setlocal errorformat=%m\ in\ %f\ on\ line\ %l
+
 autocmd FileType *twig,*html setlocal makeprg=tidy\ -eq\ %
 
 augroup PHPControlStructureGroup
