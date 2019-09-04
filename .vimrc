@@ -130,6 +130,7 @@ command GtagSynch call CtagsGlobalSynch()
 let g:debuggerPort = 9001
 let g:debuggerTimeout = 40
 let g:debuggerMaxDepth = 10
+let g:debuggerMaxData = 20048
 
 set statusline=%f         " Path to the file
 set statusline+=%=        " Switch to the right side
@@ -138,3 +139,12 @@ set statusline+=/         " Separator
 set statusline+=%L        " Total lines
 
 autocmd FileType * inoremap <localleader><c-a-down> <esc>YPi
+
+" {{{ plugin vim-php-namespace settings
+function! IPhpInsertUse()
+    call PhpInsertUse()
+    call feedkeys('a',  'n')
+endfunction
+autocmd FileType php inoremap <localleader>u <Esc>:call IPhpInsertUse()<CR>
+autocmd FileType php noremap <localleader>u :call PhpInsertUse()<CR>
+"}}}

@@ -1,3 +1,7 @@
+#### Plugins
+
+auto PHP namespace: https://github.com/arnaud-lb/vim-php-namespace
+
 #### ctags
 
 Ctags is a programming tool that generates an index (or tag) file of names found in source
